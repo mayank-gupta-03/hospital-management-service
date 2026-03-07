@@ -1,5 +1,6 @@
 package com.hospital_management_service.entity;
 
+import com.hospital_management_service.entity.type.BloodGroupType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,5 +28,8 @@ public class Patient {
     private String email;
 
     private String gender;
+
+    @Enumerated(EnumType.STRING)
+    private BloodGroupType bloodGroup;
 
 }
