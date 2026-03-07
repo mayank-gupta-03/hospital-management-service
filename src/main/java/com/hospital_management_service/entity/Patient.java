@@ -36,4 +36,7 @@ public class Patient {
     @OneToOne
     private Insurance insurance;
 
+    @OneToMany(mappedBy = "patient")
+    private List<Appointment> appointments;
+
 }
