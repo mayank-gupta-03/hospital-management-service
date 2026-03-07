@@ -23,6 +23,9 @@ public class Insurance {
     @Column(nullable = false, unique = true, length = 50)
     private String policyNumber;
 
+    @Column(nullable = false, length = 50)
+    private String provider;
+
     @Column(nullable = false)
     private LocalDate validUntil;
 

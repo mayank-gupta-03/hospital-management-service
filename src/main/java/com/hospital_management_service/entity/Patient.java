@@ -33,7 +33,8 @@ public class Patient {
     @Enumerated(EnumType.STRING)
     private BloodGroupType bloodGroup;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "insurance_id")
     private Insurance insurance;
 
     @OneToMany(mappedBy = "patient")

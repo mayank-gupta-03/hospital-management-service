@@ -23,6 +23,7 @@ public class Department {
     private String name;
 
     @OneToOne
+    @JoinColumn(name = "head_doctor_id")
     private Doctor headDoctor;
 
     @ManyToMany
