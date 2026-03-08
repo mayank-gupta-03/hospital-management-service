@@ -1,9 +1,10 @@
 package com.hospital_management_service.controller;
 
-import com.hospital_management_service.dto.PatientDto;
+import com.hospital_management_service.dto.PatientResponseDto;
 import com.hospital_management_service.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,8 +18,13 @@ public class PatientController {
     private final PatientService patientService;
 
     @GetMapping
-    public List<PatientDto> getAllPatients() {
+    public List<PatientResponseDto> getAllPatients() {
         return patientService.getAllPatients();
+    }
+
+    @GetMapping("/{patientId}")
+    public PatientResponseDto getPatientById(@PathVariable Long patientId) {
+        return patientService.getPatientById(patientId);
     }
 
 }

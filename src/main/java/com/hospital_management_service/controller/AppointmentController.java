@@ -1,10 +1,9 @@
 package com.hospital_management_service.controller;
 
-import com.hospital_management_service.dto.AppointmentDto;
-import com.hospital_management_service.entity.Appointment;
+import com.hospital_management_service.dto.AppointmentRequestDto;
+import com.hospital_management_service.dto.AppointmentResponseDto;
 import com.hospital_management_service.service.AppointmentService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,14 +16,14 @@ public class AppointmentController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public AppointmentDto createAppointment(@RequestBody AppointmentDto appointmentDto,
+    public AppointmentResponseDto createAppointment(@RequestBody AppointmentRequestDto appointmentDto,
                                            @RequestParam Long doctorId,
                                            @RequestParam Long patientId) {
         return appointmentService.createAppointment(appointmentDto, doctorId, patientId);
     }
 
     @PutMapping("/{appointmentId}/reassign")
-    public AppointmentDto reassignAppointment(@PathVariable Long appointmentId,
+    public AppointmentResponseDto reassignAppointment(@PathVariable Long appointmentId,
                                              @RequestParam Long doctorId) {
         return appointmentService.reassignAppointment(appointmentId, doctorId);
     }
