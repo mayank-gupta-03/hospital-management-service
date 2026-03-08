@@ -35,9 +35,11 @@ public class Patient {
 
     @OneToOne(cascade = {CascadeType.ALL}, orphanRemoval = true)
     @JoinColumn(name = "insurance_id")
+    @ToString.Exclude
     private Insurance insurance;
 
-    @OneToMany(mappedBy = "patient", cascade = {CascadeType.REMOVE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "patient", cascade = {CascadeType.REMOVE}, orphanRemoval = true,  fetch = FetchType.EAGER)
+    @ToString.Exclude
     private List<Appointment> appointments;
 
 }

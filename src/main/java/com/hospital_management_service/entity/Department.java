@@ -24,10 +24,12 @@ public class Department {
 
     @OneToOne
     @JoinColumn(name = "head_doctor_id")
+    @ToString.Exclude
     private Doctor headDoctor;
 
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "department_id"), inverseJoinColumns = @JoinColumn(name = "doctor_id"))
+    @ToString.Exclude
     private Set<Doctor> doctors = new HashSet<>();
 
 }

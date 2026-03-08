@@ -30,12 +30,15 @@ public class Doctor {
     private String email;
 
     @OneToMany(mappedBy = "doctor")
+    @ToString.Exclude
     private List<Appointment> appointments;
 
     @OneToOne(mappedBy = "headDoctor")
+    @ToString.Exclude
     private Department department;
 
     @ManyToMany(mappedBy = "doctors")
+    @ToString.Exclude
     private Set<Department> departments = new HashSet<>();
 
 }
