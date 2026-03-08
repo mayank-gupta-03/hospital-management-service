@@ -1,0 +1,20 @@
+package com.hospital_management_service.dto;
+
+import lombok.*;
+import java.util.List;
+import java.util.Set;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class DoctorDto {
+
+    private Long id;
+    private String name;
+    private String specialization;
+    private String email;
+    private List<Long> appointmentIds;
+    private Set<Long> departmentIds;
+
+}
