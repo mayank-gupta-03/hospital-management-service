@@ -17,7 +17,5 @@ public class PatientResponseDto {
     private String email;
     private String gender;
     private BloodGroupType bloodGroup;
-    private Long insuranceId;
-    private List<AppointmentResponseDto> appointments;
 
 }

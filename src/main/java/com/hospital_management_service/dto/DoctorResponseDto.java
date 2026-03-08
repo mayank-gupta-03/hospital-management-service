@@ -14,7 +14,5 @@ public class DoctorResponseDto {
     private String name;
     private String specialization;
     private String email;
-    private List<AppointmentResponseDto> appointments;
-    private Set<DepartmentResponseDto> departments;
 
 }

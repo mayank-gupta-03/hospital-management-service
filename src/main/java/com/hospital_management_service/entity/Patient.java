@@ -38,7 +38,7 @@ public class Patient {
     @ToString.Exclude
     private Insurance insurance;
 
-    @OneToMany(mappedBy = "patient", cascade = {CascadeType.REMOVE}, orphanRemoval = true,  fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "patient", cascade = {CascadeType.REMOVE}, orphanRemoval = true)
     @ToString.Exclude
     private List<Appointment> appointments;
 

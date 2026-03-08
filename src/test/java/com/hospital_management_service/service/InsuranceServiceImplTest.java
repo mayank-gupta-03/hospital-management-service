@@ -44,7 +44,7 @@ public class InsuranceServiceImplTest {
         patient = Patient.builder().id(1L).name("John Doe").build();
         insurance = Insurance.builder().id(1L).policyNumber("POL123").provider("Provider").validUntil(LocalDate.now().plusYears(1)).build();
         requestDto = InsuranceRequestDto.builder().policyNumber("POL123").provider("Provider").validUntil(LocalDate.now().plusYears(1)).build();
-        responseDto = PatientResponseDto.builder().id(1L).name("John Doe").insuranceId(1L).build();
+        responseDto = PatientResponseDto.builder().id(1L).name("John Doe").build();
     }
 
     @Test

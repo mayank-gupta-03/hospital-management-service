@@ -14,6 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AppointmentServiceImpl implements AppointmentService {
@@ -49,6 +52,17 @@ public class AppointmentServiceImpl implements AppointmentService {
         doctor.getAppointments().add(appointment);
 
         return modelMapper.map(appointment, AppointmentResponseDto.class);
+    }
+
+    @Override
+    @Transactional
+    public List<AppointmentResponseDto> getAllAppointments(Long patientId) {
+        List<Appointment> appointments = appointmentRepository.findAllByPatientId(patientId);
+
+        List<AppointmentResponseDto> appointmentResponseDtos = new ArrayList<>();
+        appointments.forEach(appointment -> appointmentResponseDtos.add(modelMapper.map(appointment, AppointmentResponseDto.class)));
+
+        return appointmentResponseDtos;
     }
 
 }

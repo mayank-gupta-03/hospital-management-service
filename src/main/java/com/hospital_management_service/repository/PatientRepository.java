@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PatientRepository extends JpaRepository<Patient, Long> {
 
-    @Query("SELECT p FROM Patient p LEFT JOIN FETCH p.appointments a WHERE a.id = 1")
+    @Query("SELECT p FROM Patient p LEFT JOIN FETCH p.appointments")
     List<Patient> findAllPatients();
 
 }

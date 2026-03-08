@@ -19,6 +19,8 @@ import org.modelmapper.ModelMapper;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -95,5 +97,18 @@ public class AppointmentServiceImplTest {
         when(appointmentRepository.findById(1L)).thenReturn(Optional.empty());
 
         assertThrows(EntityNotFoundException.class, () -> appointmentService.reassignAppointment(1L, 2L));
+    }
+
+    @Test
+    void getAllAppointments_Success() {
+        when(appointmentRepository.findAllByPatientId(1L)).thenReturn(Collections.singletonList(appointment));
+        when(modelMapper.map(appointment, AppointmentResponseDto.class)).thenReturn(responseDto);
+
+        List<AppointmentResponseDto> result = appointmentService.getAllAppointments(1L);
+
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
+        assertEquals(1, result.size());
+        verify(appointmentRepository, times(1)).findAllByPatientId(1L);
     }
 }
