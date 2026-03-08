@@ -1,15 +1,15 @@
 package com.hospital_management_service;
 
-import com.hospital_management_service.dto.InsuranceDto;
-import com.hospital_management_service.dto.PatientDto;
-import com.hospital_management_service.entity.Insurance;
-import com.hospital_management_service.entity.Patient;
+import com.hospital_management_service.dto.InsuranceRequestDto;
+import com.hospital_management_service.dto.PatientResponseDto;
 import com.hospital_management_service.service.InsuranceService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 public class InsuranceTests {
@@ -19,17 +19,19 @@ public class InsuranceTests {
 
     @Test
     public void createInsuranceTest() {
-        InsuranceDto insuranceDto = InsuranceDto.builder()
+        InsuranceRequestDto insuranceDto = InsuranceRequestDto.builder()
                 .policyNumber("LOMBARD_123")
                 .provider("ICICI")
                 .validUntil(LocalDate.of(2032, 10, 5))
                 .build();
 
-        insuranceService.assignInsurance(insuranceDto, 1L);
+        PatientResponseDto response = insuranceService.assignInsurance(insuranceDto, 1L);
+        assertNotNull(response);
     }
 
     @Test
     public void disassociateInsuranceFromPatientTest() {
-        insuranceService.disassociateInsurance(1L);
+        PatientResponseDto response = insuranceService.disassociateInsurance(1L);
+        assertNotNull(response);
     }
 }
