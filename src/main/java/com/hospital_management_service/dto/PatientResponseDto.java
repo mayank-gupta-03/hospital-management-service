@@ -9,7 +9,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PatientDto {
+public class PatientResponseDto {
 
     private Long id;
     private String name;
@@ -18,7 +18,6 @@ public class PatientDto {
     private String gender;
     private BloodGroupType bloodGroup;
     private Long insuranceId;
-    private List<AppointmentDto> appointments;
+    private List<AppointmentResponseDto> appointments;
 
 }
-
