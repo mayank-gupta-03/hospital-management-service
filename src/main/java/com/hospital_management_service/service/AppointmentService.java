@@ -23,9 +23,10 @@ public class AppointmentService {
     private final ModelMapper modelMapper;
 
     @Transactional
-    public AppointmentDto createAppointment(Appointment newAppointment, Long doctorId, Long patientId) {
+    public AppointmentDto createAppointment(AppointmentDto appointmentDto, Long doctorId, Long patientId) {
         Doctor doctor = doctorRepository.findById(doctorId).orElseThrow(() -> new EntityNotFoundException("Doctor not found with id: " + doctorId));
         Patient patient = patientRepository.findById(patientId).orElseThrow(() -> new EntityNotFoundException("Patient not found with id: " + patientId));
+        Appointment newAppointment = modelMapper.map(appointmentDto, Appointment.class);
 
         if (newAppointment.getId() != null) throw new IllegalArgumentException("Appointment should not have an id!");
 

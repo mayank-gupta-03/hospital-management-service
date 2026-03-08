@@ -18,16 +18,16 @@ public class AppointmentTests {
 
     @Test
     public void createAppointmentTest() {
-        Appointment newAppointment = Appointment
+        AppointmentDto appointmentDto = AppointmentDto
                 .builder()
                 .appointmentTime(LocalDateTime.of(2026, 4, 4, 1, 30))
                 .build();
 
-        AppointmentDto appointment = appointmentService.createAppointment(newAppointment, 1L, 1L);
+        appointmentService.createAppointment(appointmentDto, 1L, 1L);
     }
 
     @Test
     public void reassignAppointmentToNewDoctorTest() {
-        AppointmentDto appointment = appointmentService.reassignAppointment(1L, 3L);
+        appointmentService.reassignAppointment(1L, 3L);
     }
 }

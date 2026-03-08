@@ -1,5 +1,6 @@
 package com.hospital_management_service.service;
 
+import com.hospital_management_service.dto.InsuranceDto;
 import com.hospital_management_service.dto.PatientDto;
 import com.hospital_management_service.entity.Insurance;
 import com.hospital_management_service.entity.Patient;
@@ -21,17 +22,22 @@ public class InsuranceService {
     private final ModelMapper modelMapper;
 
     @Transactional
-    public PatientDto assignInsurance(Insurance insurance, Long patientId) {
+    public PatientDto assignInsurance(InsuranceDto insuranceDto, Long patientId) {
         Patient patient = patientRepository.findById(patientId).orElseThrow(() -> new EntityNotFoundException("Patient not found with id: " + patientId));
+        Insurance insurance = modelMapper.map(insuranceDto, Insurance.class);
+
         patient.setInsurance(insurance);
         insurance.setPatient(patient);
+
         return modelMapper.map(insurance, PatientDto.class);
     }
 
     @Transactional
     public PatientDto disassociateInsurance(Long patientId) {
         Patient patient = patientRepository.findById(patientId).orElseThrow(() -> new EntityNotFoundException("Patient not found with id: " + patientId));
+
         patient.setInsurance(null);
+
         return modelMapper.map(patient, PatientDto.class);
     }
 
