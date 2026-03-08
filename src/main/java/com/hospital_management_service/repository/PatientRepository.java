@@ -2,6 +2,13 @@ package com.hospital_management_service.repository;
 
 import com.hospital_management_service.entity.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface PatientRepository extends JpaRepository<Patient, Long> {
+
+    @Query("SELECT p FROM Patient p LEFT JOIN FETCH p.appointments a WHERE a.id = 1")
+    List<Patient> findAllPatients();
+
 }
