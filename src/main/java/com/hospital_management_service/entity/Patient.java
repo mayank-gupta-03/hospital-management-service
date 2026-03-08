@@ -37,7 +37,7 @@ public class Patient {
     @JoinColumn(name = "insurance_id")
     private Insurance insurance;
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patient", cascade = {CascadeType.REMOVE}, orphanRemoval = true)
     private List<Appointment> appointments;
 
 }
