@@ -18,6 +18,7 @@ public class PatientDto {
     private String gender;
     private BloodGroupType bloodGroup;
     private Long insuranceId;
-    private List<Long> appointmentIds;
+    private List<AppointmentDto> appointments;
 
 }
+
