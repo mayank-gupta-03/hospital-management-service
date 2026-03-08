@@ -1,7 +1,7 @@
 package com.hospital_management_service.service;
 
-import com.hospital_management_service.dto.InsuranceDto;
-import com.hospital_management_service.dto.PatientDto;
+import com.hospital_management_service.dto.InsuranceRequestDto;
+import com.hospital_management_service.dto.PatientResponseDto;
 import com.hospital_management_service.entity.Insurance;
 import com.hospital_management_service.entity.Patient;
 import com.hospital_management_service.repository.InsuranceRepository;
@@ -22,24 +22,24 @@ public class InsuranceServiceImpl implements InsuranceService {
 
     @Override
     @Transactional
-    public PatientDto assignInsurance(InsuranceDto insuranceDto, Long patientId) {
+    public PatientResponseDto assignInsurance(InsuranceRequestDto insuranceDto, Long patientId) {
         Patient patient = patientRepository.findById(patientId).orElseThrow(() -> new EntityNotFoundException("Patient not found with id: " + patientId));
         Insurance insurance = modelMapper.map(insuranceDto, Insurance.class);
 
         patient.setInsurance(insurance);
         insurance.setPatient(patient);
 
-        return modelMapper.map(insurance, PatientDto.class);
+        return modelMapper.map(insurance, PatientResponseDto.class);
     }
 
     @Override
     @Transactional
-    public PatientDto disassociateInsurance(Long patientId) {
+    public PatientResponseDto disassociateInsurance(Long patientId) {
         Patient patient = patientRepository.findById(patientId).orElseThrow(() -> new EntityNotFoundException("Patient not found with id: " + patientId));
 
         patient.setInsurance(null);
 
-        return modelMapper.map(patient, PatientDto.class);
+        return modelMapper.map(patient, PatientResponseDto.class);
     }
 
 }

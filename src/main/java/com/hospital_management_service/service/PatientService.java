@@ -1,11 +1,11 @@
 package com.hospital_management_service.service;
 
-import com.hospital_management_service.dto.PatientDto;
+import com.hospital_management_service.dto.PatientResponseDto;
 import java.util.List;
 
 public interface PatientService {
 
-    PatientDto getPatientById(Long patientId);
-    List<PatientDto> getAllPatients();
+    PatientResponseDto getPatientById(Long patientId);
+    List<PatientResponseDto> getAllPatients();
 
 }

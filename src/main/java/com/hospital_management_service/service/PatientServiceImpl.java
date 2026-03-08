@@ -1,6 +1,6 @@
 package com.hospital_management_service.service;
 
-import com.hospital_management_service.dto.PatientDto;
+import com.hospital_management_service.dto.PatientResponseDto;
 import com.hospital_management_service.entity.Patient;
 import com.hospital_management_service.repository.PatientRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -19,17 +19,17 @@ public class PatientServiceImpl implements PatientService {
     private final ModelMapper modelMapper;
 
     @Override
-    public PatientDto getPatientById(Long patientId) {
+    public PatientResponseDto getPatientById(Long patientId) {
         Patient patient = patientRepository.findById(patientId).orElseThrow(() -> new EntityNotFoundException("Patient with id: " + patientId + " not found"));
-        return modelMapper.map(patient, PatientDto.class);
+        return modelMapper.map(patient, PatientResponseDto.class);
     }
 
     @Override
-    public List<PatientDto> getAllPatients() {
+    public List<PatientResponseDto> getAllPatients() {
         List<Patient> patients = patientRepository.findAllPatients();
-        List<PatientDto> patientDtos = new ArrayList<>();
+        List<PatientResponseDto> patientDtos = new ArrayList<>();
         patients.forEach(patient -> {
-            patientDtos.add(modelMapper.map(patient, PatientDto.class));
+            patientDtos.add(modelMapper.map(patient, PatientResponseDto.class));
         });
         return patientDtos;
     }
