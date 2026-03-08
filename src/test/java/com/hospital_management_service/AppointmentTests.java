@@ -1,5 +1,6 @@
 package com.hospital_management_service;
 
+import com.hospital_management_service.dto.AppointmentDto;
 import com.hospital_management_service.entity.Appointment;
 import com.hospital_management_service.repository.AppointmentRepository;
 import com.hospital_management_service.service.AppointmentService;
@@ -22,6 +23,11 @@ public class AppointmentTests {
                 .appointmentTime(LocalDateTime.of(2026, 4, 4, 1, 30))
                 .build();
 
-        Appointment appointment = appointmentService.createNewAppointment(newAppointment, 1L, 1L);
+        AppointmentDto appointment = appointmentService.createAppointment(newAppointment, 1L, 1L);
+    }
+
+    @Test
+    public void reassignAppointmentToNewDoctorTest() {
+        AppointmentDto appointment = appointmentService.reassignAppointment(1L, 3L);
     }
 }

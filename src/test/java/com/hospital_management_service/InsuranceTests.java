@@ -1,5 +1,6 @@
 package com.hospital_management_service;
 
+import com.hospital_management_service.dto.PatientDto;
 import com.hospital_management_service.entity.Insurance;
 import com.hospital_management_service.entity.Patient;
 import com.hospital_management_service.service.InsuranceService;
@@ -23,6 +24,11 @@ public class InsuranceTests {
                 .validUntil(LocalDate.of(2032, 10, 5))
                 .build();
 
-        Patient patient = insuranceService.assignInsuranceToPatient(insurance, 1L);
+        PatientDto patient = insuranceService.assignInsurance(insurance, 1L);
+    }
+
+    @Test
+    public void disassociateInsuranceFromPatientTest() {
+        PatientDto patient = insuranceService.disassociateInsurance(1L);
     }
 }
